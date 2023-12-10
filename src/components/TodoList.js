@@ -6,22 +6,23 @@ import AddTask from "./AddTask";
 import ReactHowler from "react-howler";
 
 const TodoList = () => {
-  const mounting = useRef(false);
+  const mounting = useRef(null);
   const [playSound, setPlaySound] = useState(false);
 
   const [tasks, setTasks] = useState({});
 
   useEffect(() => {
+    console.log(mounting.current);
     if (mounting.current) {
       const stringIfyTasks = JSON.stringify(tasks);
       localStorage.setItem("tasks", stringIfyTasks);
+    } else {
+      const tasks = localStorage.getItem("tasks");
+      setTasks(JSON.parse(tasks));
+
+      mounting.current = true;
     }
   }, [tasks]);
-
-  useEffect(() => {
-    const tasks = localStorage.getItem("tasks");
-    setTasks(JSON.parse(tasks));
-  }, []);
 
   const handleTaskComplete = (taskId) => {
     const updatedTasks = { ...tasks };
@@ -81,7 +82,6 @@ const TodoList = () => {
       {playSound && (
         <button onClick={handleStopSounds}>Stop Sound Playing</button>
       )}
-      <div ref={mounting}></div>
     </div>
   );
 };
