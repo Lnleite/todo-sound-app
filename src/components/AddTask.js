@@ -2,11 +2,13 @@ import { useState } from "react";
 import "./AddTask.css";
 
 const AddTask = ({ handleAddTasks }) => {
-  const [taskText, setTaskText] = useState();
+  const [taskText, setTaskText] = useState("");
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    handleAddTasks(taskText);
+    if (taskText.trim().length > 0) {
+      handleAddTasks(taskText);
+    }
     setTaskText("");
   };
 

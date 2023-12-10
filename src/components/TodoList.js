@@ -12,7 +12,6 @@ const TodoList = () => {
   const [tasks, setTasks] = useState({});
 
   useEffect(() => {
-    console.log(mounting.current);
     if (mounting.current) {
       const stringIfyTasks = JSON.stringify(tasks);
       localStorage.setItem("tasks", stringIfyTasks);
