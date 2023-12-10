@@ -1,0 +1,13 @@
+.addTasksComponent {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.addTaskInput {
+  display: block;
+}
+
+button {
+  max-width: 20%;
+}
