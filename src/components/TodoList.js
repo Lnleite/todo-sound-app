@@ -17,7 +17,9 @@ const TodoList = () => {
       localStorage.setItem("tasks", stringIfyTasks);
     } else {
       const tasks = localStorage.getItem("tasks");
-      setTasks(JSON.parse(tasks));
+      if (tasks?.length > 0) {
+        setTasks(JSON.parse(tasks));
+      }
 
       mounting.current = true;
     }
